@@ -49,7 +49,8 @@ var options = {
             "link": "http://test.link",
             "1.0" : true
         }
-    }
+    },
+    "public" : []
  }
 
 var versionCheck = require('version-control')(options);
@@ -57,3 +58,4 @@ var versionCheck = require('version-control')(options);
 
 - _header_: header that is required to be included
 - _platforms_: object that allows you to setup valid platforms and valid versions
+- _public_: array of string with public paths that must to be ignored by version-control (use * as a wildcard)
