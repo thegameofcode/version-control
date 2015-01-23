@@ -4,7 +4,7 @@
   "description": "A node middleware for client API version control",
   "main": "./lib/version-control",
   "scripts": {
-    "test": "./node_modules/mocha/bin/mocha tests --recursive"
+    "test": "make test"
   },
   "repository": {
     "type": "git",
