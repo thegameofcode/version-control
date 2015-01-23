@@ -21,6 +21,8 @@ install middleware
 npm install --save version-control
 ```
 
+sample code
+
 ```javascript
 var restify = require('restify');
 var server = restify.createServer({
