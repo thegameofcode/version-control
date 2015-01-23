@@ -18,5 +18,8 @@
   "homepage": "https://github.com/thegameofcode/version-control",
   "devDependencies": {
     "mocha": "^2.1.0"
+  },
+  "dependencies": {
+    "clone": "^0.2.0"
   }
 }
