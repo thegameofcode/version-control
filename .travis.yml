@@ -9,3 +9,4 @@ deploy:
   on:
     tags: true
     repo: thegameofcode/version-control
+    branch: master
