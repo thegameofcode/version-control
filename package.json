@@ -1,0 +1,22 @@
+{
+  "name": "version-control",
+  "version": "1.0.0",
+  "description": "A node middleware for client API version control",
+  "main": "./lib/version-control",
+  "scripts": {
+    "test": "./node_modules/mocha/bin/mocha tests --recursive"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/thegameofcode/version-control.git"
+  },
+  "author": "The Game Of Code",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/thegameofcode/version-control/issues"
+  },
+  "homepage": "https://github.com/thegameofcode/version-control",
+  "devDependencies": {
+    "mocha": "^2.1.0"
+  }
+}
