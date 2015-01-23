@@ -39,7 +39,7 @@ describe('public paths', function(){
 
     it('array of allowed urls', function(done){
         var req = {
-            path : '/public/path/4',
+            url : '/public/path/4',
             header : function(){
                 return undefined
             }
@@ -65,7 +65,7 @@ describe('public paths', function(){
 
     it('wildcard', function(done){
         var req = {
-            path : '/public/path/2',
+            url : '/public/path/2',
             header : function(){
                 return undefined
             }

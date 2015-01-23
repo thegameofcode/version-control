@@ -1,6 +1,6 @@
 {
   "name": "version-control",
-  "version": "1.0.3",
+  "version": "1.0.4",
   "description": "A node middleware for client API version control",
   "main": "./lib/version-control",
   "scripts": {
@@ -17,7 +17,9 @@
   },
   "homepage": "https://github.com/thegameofcode/version-control",
   "devDependencies": {
-    "mocha": "^2.1.0"
+    "mocha": "^2.1.0",
+    "request": "^2.51.0",
+    "restify": "^2.8.5"
   },
   "dependencies": {
     "clone": "^0.2.0",
