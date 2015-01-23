@@ -1,3 +1,11 @@
 language: node_js
 node_js:
-  - "0.10"
+- '0.10'
+deploy:
+  provider: npm
+  email: thegameofcodeteam@gmail.com
+  api_key:
+    secure: T3kXBHpLY2FUpionflUzrNEUXwV5BOVgQrxoQOKx51hEj3ysRJqU9kZk8S7fIuaFnA3HI2N+Df50s85X1+xHfdPqgVxDQRiu/KY2WuyKbIQOr3H9lFJE+wGOfXaNfgIv9V+W4EKK6wbAa49TTaHRJKQZdptAzYe5chqb14aPoVE=
+  on:
+    tags: true
+    repo: thegameofcode/version-control
