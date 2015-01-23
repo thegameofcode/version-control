@@ -1,2 +1,2 @@
 # version-control
-A nodejs for client version controlling
+A nodejs middleware for client version controlling
