@@ -1,4 +1,5 @@
 var assert = require('assert');
+var versionControl = require('../lib/version-control.js');
 
 describe('middleware', function(){
 
@@ -36,8 +37,7 @@ describe('middleware', function(){
             if(canContinue === false && validResponse) done();
         };
 
-        var versionCheck = require('../lib/version-control.js')(settings);
-        versionCheck(req,res,next);
+        versionControl(settings)(req, res, next);
     });
 
     it('invalid platform in header', function(done){
@@ -67,8 +67,7 @@ describe('middleware', function(){
             if(canContinue === false && validResponse) done();
         };
 
-        var versionCheck = require('../lib/version-control.js')(settings);
-        versionCheck(req,res,next);
+        versionControl(settings)(req, res, next);
     });
 
     it('invalid platform version in header', function(done){
@@ -99,8 +98,7 @@ describe('middleware', function(){
             if(canContinue === false && validResponse) done();
         };
 
-        var versionCheck = require('../lib/version-control.js')(settings);
-        versionCheck(req,res,next);
+        versionControl(settings)(req, res, next);
     });
 
     it('old platform version in header', function(done){
@@ -131,8 +129,7 @@ describe('middleware', function(){
             if(canContinue === false && validResponse) done();
         };
 
-        var versionCheck = require('../lib/version-control.js')(settings);
-        versionCheck(req,res,next);
+        versionControl(settings)(req, res, next);
     });
 
     it('valid version must continue', function(done){
@@ -149,7 +146,6 @@ describe('middleware', function(){
             if(canContinue === undefined || canContinue === true) done();
         };
 
-        var versionCheck = require('../lib/version-control.js')(settings);
-        versionCheck(req,res,next);
+        versionControl(settings)(req, res, next);
     });
 });
