@@ -3,7 +3,7 @@ var assert = require('assert');
 describe('middleware', function(){
 
     var settings = {
-        "header" : "x-mycomms-version",
+        "header" : "x-app-version",
         "platforms" : {
             "test" : {
                 "link" : "http://testLink",
