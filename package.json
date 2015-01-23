@@ -20,6 +20,7 @@
     "mocha": "^2.1.0"
   },
   "dependencies": {
-    "clone": "^0.2.0"
+    "clone": "^0.2.0",
+    "debug": "^2.1.1"
   }
 }
