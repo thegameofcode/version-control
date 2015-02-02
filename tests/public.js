@@ -17,18 +17,18 @@ describe('public paths', function(){
 
     it('no public field in settings', function(done){
         var req = {
-            path : '/public/path/4',
+            path : '/private/path/4',
             header : function(){
                 return undefined
             }
         };
         var res = {
-            send : function(){
-                done();
+            send : function(status){
             }
         };
         var next = function(canContinue){
-            if(canContinue === undefined || canContinue === true) done();
+            assert.equal(canContinue, false, 'Invalid next call');
+            done();
         };
 
         var settings = clone(defaultSettings);
@@ -51,7 +51,8 @@ describe('public paths', function(){
             }
         };
         var next = function(canContinue){
-            if(canContinue === undefined || canContinue === true) done();
+            assert.equal(canContinue, true, 'Invalid next call');
+            done();
         };
 
         var settings = clone(defaultSettings);
@@ -77,7 +78,8 @@ describe('public paths', function(){
             }
         };
         var next = function(canContinue){
-            if(canContinue === undefined || canContinue === true) done();
+            assert.equal(canContinue, true, 'Invalid next call');
+            done();
         };
 
         var settings = clone(defaultSettings);
