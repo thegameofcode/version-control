@@ -1,5 +1,5 @@
 var assert = require('assert');
-var clone = require('clone');
+var _ = require('lodash');
 var versionControl = require('../lib/version-control.js');
 
 describe('install redirect', function(){
@@ -42,7 +42,7 @@ describe('install redirect', function(){
             done();
         };
 
-        var settings = clone(defaultSettings);
+        var settings = _.assign({},defaultSettings);
         delete(settings.installPath);
 
         versionControl(settings)(req, res, next);
@@ -71,7 +71,7 @@ describe('install redirect', function(){
             if(canContinue === false && headerOk && sendOk) done();
         };
 
-        var settings = clone(defaultSettings);
+        var settings = _.assign({}, defaultSettings);
 
         versionControl(settings)(req, res, next);
     });

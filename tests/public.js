@@ -1,5 +1,5 @@
 var assert = require('assert');
-var clone = require('clone');
+var _ = require('lodash');
 var versionControl = require('../lib/version-control.js');
 
 describe('public paths', function(){
@@ -31,7 +31,7 @@ describe('public paths', function(){
             done();
         };
 
-        var settings = clone(defaultSettings);
+        var settings = _.assign({}, defaultSettings);
         delete(settings.public);
 
         versionControl(settings)(req, res, next);
@@ -55,7 +55,7 @@ describe('public paths', function(){
             done();
         };
 
-        var settings = clone(defaultSettings);
+        var settings = _.assign({}, defaultSettings);
         settings.public.push('/public/path/1');
         settings.public.push('/public/path/2');
         settings.public.push('/public/path/4/not');
@@ -82,7 +82,7 @@ describe('public paths', function(){
             done();
         };
 
-        var settings = clone(defaultSettings);
+        var settings = _.assign({}, defaultSettings);
         settings.public.push('/public/*');
 
         versionControl(settings)(req, res, next);
