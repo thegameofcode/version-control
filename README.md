@@ -51,7 +51,8 @@ var options = {
         }
     },
     "public" : [],
-    "installPath" : "/install"
+    "installPath" : "/install",
+    "versionPath" : "/version"
  }
 
 var versionCheck = require('version-control')(options);
@@ -61,3 +62,4 @@ var versionCheck = require('version-control')(options);
 - _platforms_: object that allows you to setup valid platforms and valid versions
 - _public_: array of string with public paths that must to be ignored by version-control (use * as a wildcard)
 - _installPath_: (default empty) base path that tells version-control to redirect to the latest install link for platform (e.g. an installPath of "/install" makes a call to "/install/all" point to "http://test.link" with the example settings)
+- _versionPath_: (default "/version") base path that allows a client to check if its version is allowed
