@@ -40,9 +40,8 @@ describe('/version endpoint',function(){
 			done();
 		};
 
-		var settings = _.assign({},defaultSettings);
+		var settings = _.clone(defaultSettings);
 		versionControl(settings)(req, res, next);
 	});
-
 
 });

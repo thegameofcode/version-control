@@ -1,6 +1,14 @@
+"use strict";
+
 var assert = require('assert');
 var _ = require('lodash');
+var should = require('chai').should();
+var mongoose = require('mongoose');
+var shortid = require('shortid');
 var versionControl = require('../lib/version-control.js');
+
+require('../lib/schemas/installation');
+var Installation = mongoose.model('Installation');
 
 describe('install redirect', function(){
 
@@ -77,9 +85,14 @@ describe('install redirect', function(){
     });
 
     it('query params', function(done){
+        var installationId = shortid.generate();
+
         var req = {
-            url : '/install/test?i=AbCdEf1J',
-            header : function() { }
+            url : '/install/test?i=' + installationId,
+            header : function() { },
+            query : {
+                i: installationId
+            }
         };
         var headerOk = false;
         var sendOk = false;
@@ -96,11 +109,26 @@ describe('install redirect', function(){
             }
         };
         var next = function(canContinue){
-            if(canContinue === false && headerOk && sendOk) done();
+            canContinue.should.be.false;
+            headerOk.should.be.true;
+            sendOk.should.be.true;
+
+            Installation.findOne({installId:installationId}).exec(function(err, installation){
+                should.not.exist(err);
+                installation.installId.should.be.equal(installationId);
+                done();
+            });
         };
 
-        var settings = _.assign({}, defaultSettings);
+        var settings = _.clone(defaultSettings);
+        settings.db = "mongodb://192.168.99.100:32768/versionControl?w=1";
 
-        versionControl(settings)(req, res, next);
+        mongoose.connect(settings.db, function(err){
+            should.not.exist(err);
+            Installation.remove({}, function(){
+                versionControl(settings)(req, res, next);
+            });
+        });
+
     });
 });

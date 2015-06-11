@@ -1,6 +1,6 @@
 {
   "name": "version-control",
-  "version": "1.2.2",
+  "version": "1.2.3",
   "description": "A node middleware for client API version control",
   "main": "./lib/version-control",
   "scripts": {
@@ -17,12 +17,16 @@
   },
   "homepage": "https://github.com/thegameofcode/version-control",
   "devDependencies": {
+    "chai": "^3.0.0",
     "mocha": "^2.1.0",
     "request": "^2.51.0",
     "restify": "^2.8.5"
   },
   "dependencies": {
+    "async": "^1.2.1",
     "debug": "^2.1.1",
-    "lodash": "^3.1.0"
+    "lodash": "^3.1.0",
+    "mongoose": "^4.0.5",
+    "shortid": "^2.2.2"
   }
 }
