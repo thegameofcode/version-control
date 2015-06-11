@@ -121,7 +121,7 @@ describe('install redirect', function(){
         };
 
         var settings = _.clone(defaultSettings);
-        settings.db = "mongodb://192.168.99.100:32768/versionControl?w=1";
+        settings.db = process.env.MONGO_URI || "mongodb://localhost/versionControl?w=1";
 
         mongoose.connect(settings.db, function(err){
             should.not.exist(err);
