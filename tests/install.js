@@ -75,4 +75,32 @@ describe('install redirect', function(){
 
         versionControl(settings)(req, res, next);
     });
+
+    it('query params', function(done){
+        var req = {
+            url : '/install/test?i=AbCdEf1J',
+            header : function() { }
+        };
+        var headerOk = false;
+        var sendOk = false;
+        var res = {
+            header : function(key,value){
+                if(key !== 'Location') return;
+
+                assert.equal(value, defaultSettings.platforms.test.link, 'Invalid redirect url');
+                headerOk = true;
+            },
+            send : function(statusCode){
+                assert.equal(statusCode, 302, 'Invalid redirect statusCode');
+                sendOk = true;
+            }
+        };
+        var next = function(canContinue){
+            if(canContinue === false && headerOk && sendOk) done();
+        };
+
+        var settings = _.assign({}, defaultSettings);
+
+        versionControl(settings)(req, res, next);
+    });
 });
