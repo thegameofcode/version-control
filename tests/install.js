@@ -6,6 +6,7 @@ var should = require('chai').should();
 var mongoose = require('mongoose');
 var shortid = require('shortid');
 var versionControl = require('../lib/version-control.js');
+var errors = require('../lib/errors.js');
 
 require('../lib/schemas/installation');
 var Installation = mongoose.model('Installation');
@@ -23,7 +24,7 @@ describe('install redirect', function(){
         installPath : '/install'
     };
 
-    it('no install path in settings',function(done) {
+    it('no install path in settings', function(done) {
         var req = {
             url : '/install/test',
             header : function() { }
@@ -50,8 +51,39 @@ describe('install redirect', function(){
             done();
         };
 
-        var settings = _.assign({},defaultSettings);
+        var settings = _.assign({}, defaultSettings);
         delete(settings.installPath);
+
+        versionControl(settings)(req, res, next);
+    });
+
+    it('missing platform on settings', function(done) {
+        var req = {
+            url : '/install/UNKNOWN',
+            header : function() { }
+        };
+
+		var sendOk = false;
+
+        var res = {
+            header : function(key,value){
+                assert.fail('Invalid call to header');
+            },
+            send : function(statusCode, err) {
+				var expectedError = errors.invalidPlatform;
+                assert.equal(statusCode, 400, 'It should send error 400 on unknown platform');
+                assert.deepEqual(err, expectedError);
+                sendOk = true;
+            }
+        };
+
+        var next = function(canContinue) {
+            assert.equal(canContinue, errors.invalidPlatform, 'Invalid next call');
+            assert.equal(sendOk, true, 'send should be called');
+            done();
+        };
+
+        var settings = _.assign({},defaultSettings);
 
         versionControl(settings)(req, res, next);
     });
